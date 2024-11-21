@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function propertiJual()
+    {
+        return $this->hasMany(PropertiJual::class, 'id_user', 'id');
+    }
 }
