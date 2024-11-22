@@ -11,7 +11,7 @@ class PropertiJual extends Model
 
     protected $table = 'properti_jual';
 
-    protected $primaryKey = 'id_jual';
+    protected $primaryKey = 'id_properti_jual';
 
     public $timestamps = false;
 

@@ -17,7 +17,7 @@ class CRUDController extends Controller
 
         $properti = $user->role === 'admin' ? PropertiJual::all() : PropertiJual::where('id_user', $user->id)->get();
 
-        return view('crud.index', compact('properti'));
+        return view('properti.view', compact('properti'));
     }
 
     /**
@@ -33,6 +33,7 @@ class CRUDController extends Controller
      */
     public function store(Request $request)
     {
+        $path = $request->file('gambar')->store('gambar', 'public');
         PropertiJual::create([
             'id_kategori' => $request->id_kategori,
             'id_user' => Auth::id(),
@@ -42,11 +43,11 @@ class CRUDController extends Controller
             'lokasi' => $request->lokasi,
             'kamar_tidur' => $request->kamar_tidur,
             'kamar_mandi' => $request->kamar_mandi,
-            'gambar' => $request->gambar,
+            'gambar' => $path,
             'deskripsi' => $request->deskripsi,
         ]);
 
-        return redirect()->route('crud.index')->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('properti.index')->with('success', 'Data berhasil disimpan.');
     }
 
     /**
@@ -54,7 +55,9 @@ class CRUDController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $properti = PropertiJual::findOrFail($id);
+        // dd($properti);
+        return view('properti.detail', compact('properti'));
     }
 
     /**
@@ -65,8 +68,10 @@ class CRUDController extends Controller
         $properti = PropertiJual::findOrFail($id);
 
         if (Auth::user()->role !== 'admin' && $properti->id_user !== Auth::id()) {
-            return view('crud.edit', compact('properti'));
+            return view('properti.index')->with('error', 'Anda tidak memiliki akses.');
         }
+
+        return view('properti.edit', compact('properti'));
     }
 
     /**
@@ -74,11 +79,25 @@ class CRUDController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $properti = PropertiJual::findOrFail($id);
 
-        $properti->update($request->all());
+        if ($request->hasFile('gambar')) {
+            $path = $request->file('gambar')->store('gambar', 'public');
 
-        return redirect()->route('crud.index')->with('success', 'Data berhasil diubah.');
+            if ($properti->gambar) {
+                $oldPath = public_path('storage/' . $properti->gambar);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+            }
+
+            $properti->gambar = $path;
+        }
+
+        $properti->update($request->except('gambar'));
+
+        return redirect()->route('properti.index')->with('success', 'Data berhasil diubah.');
     }
 
     /**
@@ -89,11 +108,11 @@ class CRUDController extends Controller
         $properti = PropertiJual::findOrFail($id);
 
         if (Auth::user()->role !== 'admin' && $properti->id_user !== Auth::id()) {
-            return redirect()->route('crud.index')->with('error', 'Anda tidak memiliki akses.');
+            return redirect()->route('properti.index')->with('error', 'Anda tidak memiliki akses.');
         }
 
         $properti->delete();
 
-        return redirect()->route('crud.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('properti.index')->with('success', 'Data berhasil dihapus.');
     }
 }

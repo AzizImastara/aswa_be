@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buat Properti</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
+
 <body>
     <div class="container">
         <h1>Buat Properti Baru</h1>
@@ -33,22 +35,27 @@
             </div>
             <div class="form-group">
                 <label for="kategori">Kategori</label>
-                <select class="form-control" id="kategori" name="kategori" required>
-                    <option value="subsidi">Subsidi</option>
-                    <option value="cluster">Cluster</option>
-                    <option value="take_over">Take Over</option>
+                <select class="form-control" id="id_kategori" name="id_kategori" required>
+                    <option value="1">Subsidi</option>
+                    <option value="2">Cluster</option>
+                    <option value="3">Take Over</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="jumlah_kamar_tidur">Jumlah Kamar Tidur</label>
-                <input type="number" class="form-control" id="jumlah_kamar_tidur" name="jumlah_kamar_tidur" required>
+                <input type="number" class="form-control" id="kamar_tidur" name="kamar_tidur" required>
             </div>
             <div class="form-group">
                 <label for="jumlah_kamar_mandi">Jumlah Kamar Mandi</label>
-                <input type="number" class="form-control" id="jumlah_kamar_mandi" name="jumlah_kamar_mandi" required>
+                <input type="number" class="form-control" id="kamar_mandi" name="kamar_mandi" required>
+            </div>
+            <div>
+                <label for="deskripsi">Deskripsi</label>
+                <input type="text" id="deskripsi" name="deskripsi">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </body>
+
 </html>
