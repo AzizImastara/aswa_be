@@ -29,6 +29,10 @@
 <body>
     <div class="add-property-btn">
         <button onclick="window.location.href='{{ route('properti.create') }}'">Tambah Properti</button>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
     </div>
     <div class="container">
         {{-- @if (Auth::check()) --}}
