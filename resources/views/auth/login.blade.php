@@ -10,7 +10,7 @@
 
 <body>
     <h1>Login</h1>
-    <form method="POST" action="{{ Route('login') }}">
+    <form method="POST" action="{{ route('login') }}">
         @csrf
         <div>
             <label for="email">Email:</label>
@@ -21,6 +21,7 @@
             <input type="password" id="password" name="password" required>
         </div>
         <button type="submit">Login</button>
+        <p>Belom memiliki akun? Buat <a href="{{ route('register') }}">disini!</a></p>
     </form>
 </body>
 

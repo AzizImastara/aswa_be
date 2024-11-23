@@ -51,6 +51,7 @@
             <button onclick="filterProperties('2')">Filter Cluster</button>
             <button onclick="filterProperties('3')">Filter Takeover</button>
             <button onclick="filterProperties('')">Semua</button>
+            <button onclick="/properti"><a href="{{ route('properti.index') }}">Tambah properti</a></button>
         </div>
         <div class="right">
             @if (Auth::check())
@@ -77,6 +78,7 @@
                 <p>{{ $property->deskripsi }}</p>
             </div>
         @endforeach
+
     </div>
     <script>
         function filterProperties(type) {

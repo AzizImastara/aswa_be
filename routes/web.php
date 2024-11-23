@@ -5,21 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CRUDController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PropertyController;
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-//
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
-//
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
-//
-// Route::get('/logout', function () {
-//     return view('logout');
-// });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/properti', [CRUDController::class, 'index'])->name('properti.index');
