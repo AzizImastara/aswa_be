@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CRUDController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PropertyController;
 // Route::get('/', function () {
 //     return view('welcome');
@@ -39,3 +40,4 @@ Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name(
 Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/', [LandingPageController::class, 'index'])->name('landingpage');
