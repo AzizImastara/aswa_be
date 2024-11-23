@@ -13,10 +13,6 @@ class Kategori extends Model
     protected $primaryKey = 'id_kategori';
     public $timestamps = false;
     protected $fillable = ['nama'];
-    public function properti()
-    {
-        return $this->hasMany(Properti::class, 'id_kategori', 'id_kategori');
-    }
 
     public function propertiJual()
     {

@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Property Details</title>
+    <title>Property List</title>
     <style>
         .container {
             display: flex;
+            flex-wrap: wrap;
         }
 
         .image {
@@ -24,6 +25,14 @@
             margin-top: 20px;
         }
     </style>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();
+            if (confirm('Are you sure you want to delete this item?')) {
+                event.target.closest('form').submit();
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -35,12 +44,9 @@
         <button onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
     </div>
     <div class="container">
-        {{-- @if (Auth::check()) --}}
-        {{--     {{ dd(Auth::user()->role) }} --}}
-        {{-- @endif --}}
         @foreach ($properti as $item)
             <div class="image">
-                <img src="{{ asset('storage/' . $item->gambar) }} " alt="Property Image" style="width:100%;">
+                <img src="{{ asset('storage/' . $item->gambar) }}" alt="Property Image" style="width:100%;">
             </div>
             <div class="details">
                 <h1>{{ $item->judul }}</h1>
@@ -58,7 +64,7 @@
                             style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <button type="submit" onclick="confirmDelete(event)">Delete</button>
                         </form>
                     @endif
                 </div>

@@ -29,6 +29,7 @@
             <input type="password" id="password" name="password" required>
         </div>
         <button type="submit">Register</button>
+        <p>Sudah memiliki akun? Masuk <a href="{{ route('login') }}">disini!</a></p>
     </form>
 </body>
 

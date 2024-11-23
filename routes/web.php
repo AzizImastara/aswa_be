@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CRUDController;
 use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\PropertyController;
 
 
 Route::middleware('auth')->group(function () {
