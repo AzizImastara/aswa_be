@@ -69,7 +69,7 @@
     <div class="container">
         @foreach ($properti as $property)
             <div class="property">
-                <img src="{{ asset('storage/' . $property->gambar) }}" alt="Property Image">
+                <img src="{{ asset('storage/' . $property->gambar) }}" alt="Property Image" style="width:50%;">
                 <h2>{{ $property->judul }}</h2>
                 <p>Price: {{ $property->harga }}</p>
                 <p>Location: {{ $property->lokasi }}</p>

@@ -57,7 +57,7 @@
                 <div class="buttons">
                     <button
                         onclick="window.location.href='{{ route('properti.show', $item->id_properti_jual) }}'">View</button>
-                    @if (Auth::check() && Auth::user()->role === 'admin')
+                    @if (Auth::check())
                         <button
                             onclick="window.location.href='{{ route('properti.edit', $item->id_properti_jual) }}'">Edit</button>
                         <form action="{{ route('properti.destroy', $item->id_properti_jual) }}" method="POST"
